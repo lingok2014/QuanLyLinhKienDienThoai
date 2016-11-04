@@ -17,5 +17,11 @@ namespace QuanLyLinhKienDienThoai
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        protected void Session_Start()
+        {
+            Session["MAND"] = null;
+            Session["Taikhoan"] = null;
+            Session["HoTen"] = null;
+        }
     }
 }

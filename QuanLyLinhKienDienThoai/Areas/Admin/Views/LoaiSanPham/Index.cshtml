@@ -1,0 +1,61 @@
+﻿@model IEnumerable<QuanLyLinhKienDienThoai.Models.LOAISANPHAM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout/_Layout.cshtml";
+}
+
+<h2>Danh sách loại sản phẩm</h2>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["Message"]
+    </div>
+}
+
+
+<p>
+    <a href="@Url.Action("Create","LoaiSanPham")" class="btn btn-info btn-sm">
+        <span class="glyphicon glyphicon-plus"></span><span class="hidden-xs"> Thêm</span>
+    </a>
+</p>
+<table id="dsdinhdang" class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TENLOAISP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MALOAICHA)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENLOAISP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MALOAICHA)
+                </td>
+                <td>
+                    <div class="pull-right">
+                        <a href="@Url.Action("Edit", new { id = item.MALOAISP })" class="btn btn-warning btn-sm margin-right">
+                            <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Sửa</span>
+                        </a>
+                        <a href="@Url.Action("Delete", new { id = item.MALOAISP })" class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-trash"></span><span class="hidden-xs"> Xóa</span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

@@ -1,0 +1,53 @@
+﻿@model QuanLyLinhKienDienThoai.Models.LOAISANPHAM
+
+@{
+    ViewBag.Title = "Xóa";
+    Layout = "~/Areas/Admin/Views/Shared/Layout/_Layout.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+
+<div class="alert alert-danger">
+    Bạn có thật sự muốn xóa không?
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+
+        <div class="row">
+            <div class="col-xs-4 col-sm-3">
+                @Html.LabelFor(m => m.TENLOAISP)
+            </div>
+            <div class="col-xs-8 col-sm-9">
+                @Model.TENLOAISP
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4 col-sm-3">
+                @Html.LabelFor(m => m.MALOAICHA)
+            </div>
+            <div class="col-xs-8 col-sm-9">
+                @Model.MALOAICHA
+            </div>
+        </div>
+
+        
+
+       
+        @using (Html.BeginForm())
+        {
+            <div class="pad-top">
+                <button type="submit" class="btn btn-danger margin-right">
+                    <span class="glyphicon glyphicon-trash"></span> xóa
+                </button>
+                <a href="@Url.Action("Index")" class="btn btn-warning ">
+                    <span class="glyphicon glyphicon-remove"></span> Quay về
+                </a>
+            </div>
+        }
+
+    </div>
+
+</div>
+
+
