@@ -54,7 +54,6 @@
           </Key>
           <Property Name="MATHUONGHIEU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TENTH" Type="nvarchar" MaxLength="200" />
-          <Property Name="HINHTH" Type="text" />
         </EntityType>
         <Association Name="FK_SANPHAM_LOAISANPHAM">
           <End Role="LOAISANPHAM" Type="Self.LOAISANPHAM" Multiplicity="0..1" />
@@ -103,16 +102,16 @@
           <EntitySet Name="LOAISANPHAMs" EntityType="WebLaZaDaModel.LOAISANPHAM" />
           <EntitySet Name="SANPHAMs" EntityType="WebLaZaDaModel.SANPHAM" />
           <EntitySet Name="sysdiagrams" EntityType="WebLaZaDaModel.sysdiagram" />
-          <EntitySet Name="THUONGHIEUx" EntityType="WebLaZaDaModel.THUONGHIEU" />
           <AssociationSet Name="FK_SANPHAM_LOAISANPHAM" Association="WebLaZaDaModel.FK_SANPHAM_LOAISANPHAM">
             <End Role="LOAISANPHAM" EntitySet="LOAISANPHAMs" />
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
           </AssociationSet>
+          <EntitySet Name="NGUOIDUNGs" EntityType="WebLaZaDaModel.NGUOIDUNG" />
+          <EntitySet Name="THUONGHIEUx" EntityType="WebLaZaDaModel.THUONGHIEU" />
           <AssociationSet Name="FK_SANPHAM_THUONGHIEU" Association="WebLaZaDaModel.FK_SANPHAM_THUONGHIEU">
             <End Role="THUONGHIEU" EntitySet="THUONGHIEUx" />
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
           </AssociationSet>
-          <EntitySet Name="NGUOIDUNGs" EntityType="WebLaZaDaModel.NGUOIDUNG" />
         </EntityContainer>
         <EntityType Name="LOAISANPHAM">
           <Key>
@@ -148,15 +147,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="THUONGHIEU">
-          <Key>
-            <PropertyRef Name="MATHUONGHIEU" />
-          </Key>
-          <Property Name="MATHUONGHIEU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TENTH" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="HINHTH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SANPHAMs" Relationship="WebLaZaDaModel.FK_SANPHAM_THUONGHIEU" FromRole="THUONGHIEU" ToRole="SANPHAM" />
-        </EntityType>
         <Association Name="FK_SANPHAM_LOAISANPHAM">
           <End Type="WebLaZaDaModel.LOAISANPHAM" Role="LOAISANPHAM" Multiplicity="0..1" />
           <End Type="WebLaZaDaModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
@@ -166,18 +156,6 @@
             </Principal>
             <Dependent Role="SANPHAM">
               <PropertyRef Name="MALOAISP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SANPHAM_THUONGHIEU">
-          <End Type="WebLaZaDaModel.THUONGHIEU" Role="THUONGHIEU" Multiplicity="0..1" />
-          <End Type="WebLaZaDaModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="THUONGHIEU">
-              <PropertyRef Name="MATHUONGHIEU" />
-            </Principal>
-            <Dependent Role="SANPHAM">
-              <PropertyRef Name="MATHUONGHIEU" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -193,6 +171,26 @@
           <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="HOTEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="THUONGHIEU">
+          <Key>
+            <PropertyRef Name="MATHUONGHIEU" />
+          </Key>
+          <Property Name="MATHUONGHIEU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TENTH" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SANPHAMs" Relationship="WebLaZaDaModel.FK_SANPHAM_THUONGHIEU" FromRole="THUONGHIEU" ToRole="SANPHAM" />
+        </EntityType>
+        <Association Name="FK_SANPHAM_THUONGHIEU">
+          <End Type="WebLaZaDaModel.THUONGHIEU" Role="THUONGHIEU" Multiplicity="0..1" />
+          <End Type="WebLaZaDaModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THUONGHIEU">
+              <PropertyRef Name="MATHUONGHIEU" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MATHUONGHIEU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -233,15 +231,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="THUONGHIEUx">
-            <EntityTypeMapping TypeName="WebLaZaDaModel.THUONGHIEU">
-              <MappingFragment StoreEntitySet="THUONGHIEU">
-                <ScalarProperty Name="HINHTH" ColumnName="HINHTH" />
-                <ScalarProperty Name="TENTH" ColumnName="TENTH" />
-                <ScalarProperty Name="MATHUONGHIEU" ColumnName="MATHUONGHIEU" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="NGUOIDUNGs">
             <EntityTypeMapping TypeName="WebLaZaDaModel.NGUOIDUNG">
               <MappingFragment StoreEntitySet="NGUOIDUNG">
@@ -252,6 +241,14 @@
                 <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
                 <ScalarProperty Name="TAIKHOAN" ColumnName="TAIKHOAN" />
                 <ScalarProperty Name="MAND" ColumnName="MAND" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THUONGHIEUx">
+            <EntityTypeMapping TypeName="WebLaZaDaModel.THUONGHIEU">
+              <MappingFragment StoreEntitySet="THUONGHIEU">
+                <ScalarProperty Name="TENTH" ColumnName="TENTH" />
+                <ScalarProperty Name="MATHUONGHIEU" ColumnName="MATHUONGHIEU" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

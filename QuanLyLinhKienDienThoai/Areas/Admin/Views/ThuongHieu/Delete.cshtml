@@ -5,37 +5,37 @@
     Layout = "~/Areas/Admin/Views/Shared/Layout/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>@ViewBag.Title</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>THUONGHIEU</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TENTH)
-        </dt>
+<div class="alert alert-danger">
+    Bạn có thật sự muốn xóa không?
+</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TENTH)
-        </dd>
+<div class="row">
+    <div class="col-lg-6">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HINHTH)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HINHTH)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="row">
+            <div class="col-xs-4 col-sm-3">
+                @Html.LabelFor(m => m.TENTH)
+            </div>
+            <div class="col-xs-8 col-sm-9">
+                @Model.TENTH
+            </div>
         </div>
-    }
+
+        
+        @using (Html.BeginForm())
+        {  
+            <div class="pad-top">
+                <button type="submit" class="btn btn-danger margin-right">
+                    <span class="glyphicon glyphicon-trash"></span> xóa
+                </button>
+                <a href="@Url.Action("Index")" class="btn btn-warning ">
+                    <span class="glyphicon glyphicon-remove"></span> Quay về
+                </a>
+            </div>
+        }
+
+    </div>
+
 </div>

@@ -3,38 +3,65 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/Layout/_Layout.cshtml";
+    int stt = 0;
 }
 
-<h2>Index</h2>
+<h2>Danh sách loại sản phẩm</h2>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["Message"]
+    </div>
+}
+
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create","ThuongHieu")" class="btn btn-info btn-sm">
+        <span class="glyphicon glyphicon-plus"></span><span class="hidden-xs"> Thêm</span>
+    </a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TENTH)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HINHTH)
-        </th>
-        <th></th>
-    </tr>
+<table id="dsdinhdang" class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TENTH)
+            </th>
+          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{ 
+                        stt++;
+                    }
+                    @stt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENTH)
+                </td>
+                
+                <td>
+                    <div class="pull-right">
+                        <a href="@Url.Action("Edit", new { id = item.MATHUONGHIEU })" class="btn btn-warning btn-sm margin-right">
+                            <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Sửa</span>
+                        </a>
+                        <a href="@Url.Action("Delete", new { id = item.MATHUONGHIEU })" class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-trash"></span><span class="hidden-xs"> Xóa</span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TENTH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HINHTH)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MATHUONGHIEU }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MATHUONGHIEU }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MATHUONGHIEU })
-        </td>
-    </tr>
-}
-
+        }
+    </tbody>
 </table>

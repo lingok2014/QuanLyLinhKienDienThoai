@@ -28,7 +28,7 @@ namespace QuanLyLinhKienDienThoai.Models
         public virtual DbSet<LOAISANPHAM> LOAISANPHAMs { get; set; }
         public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<THUONGHIEU> THUONGHIEUx { get; set; }
         public virtual DbSet<NGUOIDUNG> NGUOIDUNGs { get; set; }
+        public virtual DbSet<THUONGHIEU> THUONGHIEUx { get; set; }
     }
 }

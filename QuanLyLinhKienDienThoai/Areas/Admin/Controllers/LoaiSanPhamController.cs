@@ -88,9 +88,9 @@ namespace QuanLyLinhKienDienThoai.Areas.Admin.Controllers
         }
 
      
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+     
+        public ActionResult Delete(int id)
         {
             try
             {

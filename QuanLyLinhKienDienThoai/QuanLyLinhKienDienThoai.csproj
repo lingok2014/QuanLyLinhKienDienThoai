@@ -356,7 +356,6 @@
     <Content Include="Areas\Admin\Views\SanPham\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ThuongHieu\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ThuongHieu\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\ThuongHieu\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ThuongHieu\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ThuongHieu\Index.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
@@ -366,6 +365,7 @@
     <Content Include="Areas\Admin\Views\LoaiSanPham\_AddUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\ThuongHieu\_AddUpdate.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -473,6 +473,7 @@
     <Folder Include="Areas\Admin\Content\dist\" />
     <Folder Include="Areas\Admin\Content\vendor\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Content\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

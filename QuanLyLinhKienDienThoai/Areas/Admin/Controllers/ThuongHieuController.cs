@@ -20,30 +20,14 @@ namespace QuanLyLinhKienDienThoai.Areas.Admin.Controllers
             return View(db.THUONGHIEUx.ToList());
         }
 
-        // GET: Admin/ThuongHieu/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            THUONGHIEU tHUONGHIEU = db.THUONGHIEUx.Find(id);
-            if (tHUONGHIEU == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tHUONGHIEU);
-        }
-
+       
         // GET: Admin/ThuongHieu/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/ThuongHieu/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MATHUONGHIEU,TENTH,HINHTH")] THUONGHIEU tHUONGHIEU)
@@ -52,13 +36,14 @@ namespace QuanLyLinhKienDienThoai.Areas.Admin.Controllers
             {
                 db.THUONGHIEUx.Add(tHUONGHIEU);
                 db.SaveChanges();
+                TempData["Message"] = "thêm thành công!";
                 return RedirectToAction("Index");
             }
 
             return View(tHUONGHIEU);
         }
 
-        // GET: Admin/ThuongHieu/Edit/5
+       
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,9 +58,7 @@ namespace QuanLyLinhKienDienThoai.Areas.Admin.Controllers
             return View(tHUONGHIEU);
         }
 
-        // POST: Admin/ThuongHieu/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MATHUONGHIEU,TENTH,HINHTH")] THUONGHIEU tHUONGHIEU)
@@ -84,12 +67,14 @@ namespace QuanLyLinhKienDienThoai.Areas.Admin.Controllers
             {
                 db.Entry(tHUONGHIEU).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Message"] = "cập nhật thành công!";
                 return RedirectToAction("Index");
+               
             }
             return View(tHUONGHIEU);
         }
 
-        // GET: Admin/ThuongHieu/Delete/5
+      
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,14 +89,24 @@ namespace QuanLyLinhKienDienThoai.Areas.Admin.Controllers
             return View(tHUONGHIEU);
         }
 
-        // POST: Admin/ThuongHieu/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+      
+        [HttpPost]
+      
+        public ActionResult Delete(int id)
         {
-            THUONGHIEU tHUONGHIEU = db.THUONGHIEUx.Find(id);
-            db.THUONGHIEUx.Remove(tHUONGHIEU);
-            db.SaveChanges();
+            try
+            {
+                THUONGHIEU tHUONGHIEU = db.THUONGHIEUx.Find(id);
+                db.THUONGHIEUx.Remove(tHUONGHIEU);
+                db.SaveChanges();
+                TempData["Message"] = "Xóa thành công!";
+            }
+            catch (Exception)
+            {
+
+                TempData["Message"] = "thương hiệu đã có sản phẩm không thể xóa!";
+            }
+       
             return RedirectToAction("Index");
         }
 
