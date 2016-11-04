@@ -43,7 +43,7 @@ namespace QuanLyLinhKienDienThoai.Areas.Admin.Controllers
                 Session["HoTen"] = user.HOTEN;
                 return RedirectToAction("Index");
             }
-            ViewBag.error = "Đăng nhập sai hoặc bản không có quyền";
+            ViewBag.error = "Đăng nhập sai hoặc mật khẩu không tồn tại";
 
             return View();
         }
